@@ -22,7 +22,7 @@ module nfca_rx_tobytes (
     // RX byte parsed
     output reg        rx_tvalid,
     output reg  [7:0] rx_tdata,
-    output reg  [3:0] rx_tdatab,
+    output reg  [3:0] rx_tdatab, //貌似是记录rx_tdata中的有效位。
     output reg        rx_tend,
     output reg        rx_terr
 );
