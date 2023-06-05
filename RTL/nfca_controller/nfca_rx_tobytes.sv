@@ -32,8 +32,8 @@ initial {rx_tvalid, rx_tdata, rx_tend, rx_tdatab, rx_terr} = '0;
 reg [3:0] cnt = '0;
 reg [7:0] byte_saved = '0;
 enum logic [2:0] {IDLE, START, PARSE, CSTOP, STOP} status = IDLE;
-wire      error_parity = (status==PARSE) & ~(^{rx_bit,byte_saved});
-
+    wire      error_parity = (status==PARSE) & ~(^{rx_bit,byte_saved});//注意，picc回传的第一个byte没有校验，因为第一个byte对应的状态时START，error_parity始终等于0.
+                                                                        //暂时还不知道为什么这么做。
 always @ (posedge clk or negedge rstn)
     if(~rstn) begin
         {rx_tvalid, rx_tdata, rx_tdatab, rx_tend, rx_terr} <= '0;
