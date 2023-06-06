@@ -127,7 +127,7 @@ uart_tx #(
     .wdata            ( rx_tend ? {(rx_terr ? "n" : 8'h00), "\n", 8'h00, 8'h00} : 
                         { hex2ascii(rx_tdata[7:4]), hex2ascii(rx_tdata[3:0]), 
                           rx_tdatab<4'd8 ? ":" : " ", 
-                          rx_tdatab<4'd8 ? hex2ascii(rx_tdatab) : 8'h00 }
+                         rx_tdatab<4'd8 ? hex2ascii(rx_tdatab) : 8'h00 }//这些00真的会被显示出来吗？
                                                         ),
     .o_uart_tx        ( uart_tx                         )
 );
